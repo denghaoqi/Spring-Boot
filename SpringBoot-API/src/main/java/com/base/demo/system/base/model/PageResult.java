@@ -16,9 +16,9 @@ public class PageResult<T> {
     // 每页显示的总条数
     private Integer pageSize = 10;
     // 总条数
-    private long total;
+    private long itemCount;
     // 总页数
-    private Integer totalPage;
+    private Integer pageCount;
     // 是否有下一页
     private Boolean isMore;
     // 开始索引
@@ -29,22 +29,22 @@ public class PageResult<T> {
     public PageResult() {
     }
 
-    public PageResult(Integer pageNum, Integer pageSize, long total) {
+    public PageResult(Integer pageNum, Integer pageSize, long itemCount) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
-        this.total = total;
-        this.totalPage = ((int) this.total + this.pageSize - 1) / this.pageSize;
+        this.itemCount = itemCount;
+        this.pageCount = ((int) this.itemCount + this.pageSize - 1) / this.pageSize;
         this.startIndex = (this.pageNum - 1) * this.pageSize;
-        this.isMore = this.pageNum >= this.totalPage ? false : true;
+        this.isMore = this.pageNum >= this.pageCount ? false : true;
     }
 
-    public PageResult(Integer pageNum, Integer pageSize, long total, Integer totalPage) {
+    public PageResult(Integer pageNum, Integer pageSize, long itemCount, Integer pageCount) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
-        this.total = total;
-        this.totalPage = totalPage;
+        this.itemCount = itemCount;
+        this.pageCount = pageCount;
         this.startIndex = (this.pageNum - 1) * this.pageSize;
-        this.isMore = this.pageNum >= this.totalPage ? false : true;
+        this.isMore = this.pageNum >= this.pageCount ? false : true;
     }
 
     public Integer getPageNum() {
@@ -63,20 +63,20 @@ public class PageResult<T> {
         this.pageSize = pageSize;
     }
 
-    public long getTotal() {
-        return total;
+    public long getItemCount() {
+        return itemCount;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
+    public void setItemCount(long itemCount) {
+        this.itemCount = itemCount;
     }
 
-    public Integer getTotalPage() {
-        return totalPage;
+    public Integer getPageCount() {
+        return pageCount;
     }
 
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
     }
 
     public Boolean getMore() {
