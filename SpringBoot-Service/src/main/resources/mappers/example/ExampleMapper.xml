@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.base.demo.example.dao.ExampleDao">
+
+    <resultMap id="exampleMap" type="com.base.demo.example.model.entity.Example">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="testName" column="test_name"/>
+    </resultMap>
+
+    <sql id="tableName">example</sql>
+
+    <sql id="colums">
+        id,test_name
+    </sql>
+
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="testName!=null">test_name,</if>
+        </trim>
+    </sql>
+
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="testName!=null">#{testName},</if>
+        </trim>
+    </sql>
+
+    <sql id="set_value">
+        <set>
+            <trim suffixOverrides=",">
+                <if test="testName!=null">test_name = #{testName},</if>
+            </trim>
+        </set>
+    </sql>
+
+    <select id="examples" resultMap="exampleMap">
+        SELECT
+        <include refid="colums"/>
+        FROM <include refid="tableName"/>
+    </select>
+
+    <insert id="save">
+        insert into <include refid="tableName"/>(
+        <include refid="key"/>
+        )
+        values (
+        <include refid="value"/>
+        )
+    </insert>
+
+    <update id="update">
+        update <include refid="tableName"/>
+        <include refid="set_value"/>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+</mapper>

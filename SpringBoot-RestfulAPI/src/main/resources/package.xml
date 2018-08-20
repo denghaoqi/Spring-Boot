@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly >
+    <id>package</id>
+    <!-- 最终打包的文件格式 -->
+    <formats>
+        <!--windows系统-->
+        <format>zip</format>
+        <!--linux系统-->
+        <!--<format>tar.gz</format>-->
+    </formats>
+
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <fileSets>
+
+        <!-- 把项目的脚本文件目录（ src/main/bin ）中的启动脚本文件，打包进压缩包的bin目录 -->
+        <fileSet>
+            <directory>src/main/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+        </fileSet>
+
+        <!-- 把项目的配置文件，打包进压缩包的conf目录 -->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>config</outputDirectory>
+            <includes>
+                <include>application.yml</include>
+                <!--开发环境配置（生产环境不需要添加）-->
+                <include>application-dev*</include>
+                <!--测试环境配置（生产环境不需要添加）-->
+                <include>application-test*</include>
+                <!--生产环境配置-->
+                <include>application-pro*</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>src/main/resources/config</directory>
+            <outputDirectory>config</outputDirectory>
+            <includes>
+                <include>log4j2-*</include>
+            </includes>
+        </fileSet>
+
+        <!-- 把项目自己编译出来的jar文件，打包进根目录 -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <!-- 不使用项目的artifact，第三方jar不要解压，打包进zip文件的lib目录 -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

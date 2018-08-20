@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.base.demo</groupId>
+		<artifactId>SpringBoot-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>SpringBoot-Service</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>SpringBoot-Service</name>
+	<description>Demo project for Spring Boot Service</description>
+
+
+	<properties>
+		<!-- 只针对SpringBoot-Service使用的引用包版本，其他的版本写在SpringBoot-parent上 -->
+	</properties>
+
+	<dependencies>
+		<!--系统的api接口-->
+		<dependency>
+			<groupId>com.base.demo</groupId>
+			<artifactId>SpringBoot-API</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!--spting boot 集成 mybatis-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+
+		<!-- mysql连接包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- alibaba的druid数据库连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
+		</dependency>
+
+
+	</dependencies>
+
+</project>
